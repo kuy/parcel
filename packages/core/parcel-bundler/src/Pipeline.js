@@ -28,7 +28,8 @@ class Pipeline {
       dependencies: Array.from(asset.dependencies.values()),
       generated: generatedMap,
       hash: asset.hash,
-      cacheData: asset.cacheData
+      cacheData: asset.cacheData,
+      watches: asset.watches
     };
   }
 

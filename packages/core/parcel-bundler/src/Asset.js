@@ -39,6 +39,7 @@ class Asset {
     this.depAssets = new Map();
     this.parentBundle = null;
     this.bundles = new Set();
+    this.watches = new Set();
     this.cacheData = {};
     this.startTime = 0;
     this.endTime = 0;
@@ -174,6 +175,10 @@ class Asset {
     // do nothing by default
   }
 
+  async getRelatedFilesForWatcher() {
+    // do nothing by default
+  }
+
   async pretransform() {
     // do nothing by default
   }
@@ -204,6 +209,7 @@ class Asset {
       await this.loadIfNeeded();
       await this.pretransform();
       await this.getDependencies();
+      await this.getRelatedFilesForWatcher();
       await this.transform();
       this.generated = await this.generate();
     }

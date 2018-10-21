@@ -1,11 +1,22 @@
 const Asset = require('../Asset');
 const fs = require('../utils/fs');
+const {glob} = require('../utils/glob');
 const localRequire = require('../utils/localRequire');
+const {dirname} = require('path');
 
 class ReasonAsset extends Asset {
   constructor(name, options) {
     super(name, options);
     this.type = 'js';
+  }
+
+  async getRelatedFilesForWatcher() {
+    const dir = dirname(this.name);
+    const entries = await glob('**/*.re', {cwd: dir, absolute: true});
+    for (let entry of entries) {
+      if (entry === this.name) continue;
+      this.watches.add(entry);
+    }
   }
 
   async generate() {

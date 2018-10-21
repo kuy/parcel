@@ -602,6 +602,14 @@ class Bundler extends EventEmitter {
       }
     });
 
+    // Watch related files suggested by the asset
+    if (0 < processed.watches.size) {
+      for (let file of processed.watches) {
+        let add = this.parser.getAsset(file, this.options);
+        this.watch(file, add);
+      }
+    }
+
     logger.verbose(`Built ${asset.relativeName}...`);
 
     if (this.cache && cacheMiss) {

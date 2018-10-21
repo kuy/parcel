@@ -15,7 +15,7 @@ class ReasonAsset extends Asset {
     const entries = await glob('**/*.re', {cwd: dir, absolute: true});
     for (let entry of entries) {
       if (entry === this.name) continue;
-      this.watches.add(entry);
+      this.relatedFiles.add(entry);
     }
   }
 

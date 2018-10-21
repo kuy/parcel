@@ -603,10 +603,10 @@ class Bundler extends EventEmitter {
     });
 
     // Watch related files suggested by the asset
-    if (0 < processed.watches.size) {
-      for (let file of processed.watches) {
-        let add = this.parser.getAsset(file, this.options);
-        this.watch(file, add);
+    if (0 < processed.relatedFiles.size) {
+      for (let file of processed.relatedFiles) {
+        let relatedAsset = this.parser.getAsset(file, this.options);
+        this.watch(file, relatedAsset);
       }
     }
 

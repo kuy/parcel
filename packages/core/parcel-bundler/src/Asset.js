@@ -39,7 +39,7 @@ class Asset {
     this.depAssets = new Map();
     this.parentBundle = null;
     this.bundles = new Set();
-    this.watches = new Set();
+    this.relatedFiles = new Set();
     this.cacheData = {};
     this.startTime = 0;
     this.endTime = 0;

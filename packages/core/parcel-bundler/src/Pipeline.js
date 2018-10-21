@@ -29,7 +29,7 @@ class Pipeline {
       generated: generatedMap,
       hash: asset.hash,
       cacheData: asset.cacheData,
-      watches: asset.watches
+      relatedFiles: asset.relatedFiles
     };
   }
 
